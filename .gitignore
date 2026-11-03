@@ -54,3 +54,8 @@ Thumbs.db
 # Apache logs
 *.log
 .htaccess.log
+
+# oenLytics data
+analytics.db
+*.db
+oenlytics_data/

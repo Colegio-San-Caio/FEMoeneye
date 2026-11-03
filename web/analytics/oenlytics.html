@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>oenLytics Dashboard - FEMoeneye</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  // Your GA4 ID here - oenLytics will proxy/support it
+</script>
+<script src="http://localhost:8082/oenlytics.js"></script>
+</head>
+<body>
+<h1>oenLytics.x - Own Analytics - GA Support Program</h1>
+<p>Self-hosted + Google Analytics compatible</p>
+<button onclick="oenLytics.track('erp_fem_run',{solver:'go+fortran'})">Track FEM Run</button>
+<button onclick="oenLytics.track('ximg_view',{mime:'vnd.x-mosfetq-dos-image'})">Track XIMG View</button>
+<div id="stats"></div>
+<script>
+fetch('http://localhost:8082/stats').then(r=>r.json()).then(d=>{
+ document.getElementById('stats').innerHTML='<pre>'+JSON.stringify(d,null,2)+'</pre>';
+});
+setInterval(()=>{fetch('http://localhost:8082/stats').then(r=>r.json()).then(d=>{
+ document.getElementById('stats').innerHTML='<pre>'+JSON.stringify(d,null,2)+'</pre>';
+})},3000);
+</script>
+</body>
+</html>
