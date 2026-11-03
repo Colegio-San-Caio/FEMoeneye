@@ -1,0 +1,4 @@
+# Apache main - FEMoeneye ERP CAM support
+AddType application/vnd.x-mosfetq-dos-image .ximg
+AddType application/json .erp.json
+ProxyPass /erp/fem http://localhost:8080/
