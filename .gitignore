@@ -1,0 +1,56 @@
+# FEMoeneye - Go + Fortran + Python + BOA XIMG - IANA 1460172
+
+# Binaries - main
+/femoeneye
+/femoeneye.exe
+cmd/femoeneye/femoeneye
+src/fem/fortran/femoeneye
+src/fem/fortran/libfemoeneye.so
+*.so
+*.a
+*.o
+*.mod
+*.metadata
+*.ignore
+main.metadata
+main.ignore
+
+# Go
+vendor/
+go.sum
+dist/
+
+# Fortran build
+*.mod
+*.smod
+fortran/*.o
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.env
+
+# ERP / CAM generated - don't commit generated outputs
+*.ximg
+!AUTOEXEC.BAT
+!x-mosfetq-dos-image.xml
+*.gcode
+*.nc
+*.erp.json
+*.tmp
+out/
+build/
+
+# IDE + OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Apache logs
+*.log
+.htaccess.log
