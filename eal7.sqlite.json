@@ -1,1 +1,1 @@
-{"Events":[{"ts":"2026-11-03T20:19:00Z","page":"main.ximg","event":"fem_run","flops":16,"source":""},{"ts":"2026-11-03T20:19:00Z","page":"eal7.x","event":"ximg_view","flops":64,"source":""},{"ts":"2026-11-03T19:20:24.052712348Z","page":"main.ximg","event":"page_view","flops":4,"source":"oen"}],"Total":84}
+{"Events":[{"ts":"2026-11-03T20:19:00Z","page":"main.ximg","event":"fem_run","flops":16},{"ts":"2026-11-03T20:19:00Z","page":"eal7.x","event":"ximg_view","flops":64},{"ts":"2026-11-03T20:19:00Z","page":"eal7.html","event":"page_view","flops":4}],"Total":84}
