@@ -1,0 +1,31 @@
+.TH EAL7 1 "2026-11-03" "FEMoeneye" "oenLytics.x Manual"
+.SH NAME
+eal7 \- tracking matrix for oenLytics.x own analytics
+.SH SYNOPSIS
+eal7.html uses oenLytics.js tracking matrix Pages x Events
+.SH DESCRIPTION
+oenLytics.x is Google Analytics Support Program with own analytics capability.
+.br
+Tracking matrix: Pages (rows) x Events (columns) = counts.
+.br
+Endpoints:
+.TP
+.B /oenlytics.js
+JS snippet - calls oenLytics.track()
+.TP
+.B /track
+POST {"page":"eal7.html","event":"page_view"}
+.TP
+.B /matrix
+GET tracking matrix JSON
+.TP
+.B /stats
+GET last 50 events
+.SH EXAMPLE
+<script src="http://localhost:8082/oenlytics.js"></script>
+.br
+<script>oenLytics.track('page_view')</script>
+.SH SEE ALSO
+FEMoeneye, FEAoeneye, application/vnd.x-mosfetq-dos-image IANA 1460172
+.SH AUTHOR
+FEMoeneye ERP CAM - BOA
