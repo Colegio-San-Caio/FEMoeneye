@@ -1,0 +1,7 @@
+BOA: application/vnd.x-mosfetq-dos-image
+IANA: 1460172
+TYPE: main machine code
+PORT: 8038 flop quadruple
+ARCH: aarch64 ARM64 Termux
+BUILD: main.ximg
+FLOP: quadruple 4x
