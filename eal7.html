@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head><title>eal7 - Tracking Matrix - oenLytics.x</title>
+<style>
+body{font-family:monospace;background:#0a0a0a;color:#0f0;padding:20px}
+table{border-collapse:collapse;width:100%} th,td{border:1px solid #0f0;padding:8px;text-align:center}
+th{background:#003300} .hot{background:#00ff0044} h1{color:#0f0}
+</style>
+</head>
+<body>
+<h1>eal7.html - Tracking Matrix - oenLytics.x - FEMoeneye</h1>
+<p>Own Analytics - GA Support - Matrix: Pages x Events</p>
+<script src="http://localhost:8082/oenlytics.js"></script>
+<script>oenLytics.track('page_view', {page:'eal7.html', matrix:'tracking'})</script>
+
+<button onclick="oenLytics.track('fem_run',{solver:'fortran'})">Track FEM Run</button>
+<button onclick="oenLytics.track('ximg_view',{mime:'vnd.x-mosfetq-dos-image'})">Track XIMG</button>
+<button onclick="oenLytics.track('erp_export',{type:'gcode'})">Track ERP Export</button>
+
+<h2>Tracking Matrix</h2>
+<div id="matrix">Loading...</div>
+<h2>Raw Events</h2>
+<pre id="raw"></pre>
+
+<script>
+async function load(){
+  let m = await fetch('http://localhost:8082/matrix').then(r=>r.json());
+  let s = await fetch('http://localhost:8082/stats').then(r=>r.json());
+  document.getElementById('raw').textContent = JSON.stringify(s,null,2);
+  
+  // Build HTML table matrix
+  let pages = Object.keys(m.matrix);
+  let allEvents = new Set();
+  pages.forEach(p=>{ Object.keys(m.matrix[p]).forEach(ev=>allEvents.add(ev)) });
+  let evs = Array.from(allEvents);
+  
+  let html = '<table><tr><th>Page \\ Event</th>';
+  evs.forEach(ev=>{ html+=`<th>${ev}</th>` });
+  html+='<th>TOTAL</th></tr>';
+  
+  pages.forEach(p=>{
+    html+=`<tr><td>${p}</td>`;
+    let tot=0;
+    evs.forEach(ev=>{
+      let c = (m.matrix[p][ev]||0);
+      tot+=c;
+      html+=`<td class="${c>0?'hot':''}">${c}</td>`;
+    });
+    html+=`<td><b>${tot}</b></td></tr>`;
+  });
+  html+='</table><p>Total events: '+m.total+'</p>';
+  document.getElementById('matrix').innerHTML=html;
+}
+setInterval(load,2000); load();
+</script>
+</body>
+</html>
