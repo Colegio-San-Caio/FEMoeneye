@@ -1,57 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head><title>eal7 - Tracking Matrix - oenLytics.x</title>
-<style>
-body{font-family:monospace;background:#0a0a0a;color:#0f0;padding:20px}
-table{border-collapse:collapse;width:100%} th,td{border:1px solid #0f0;padding:8px;text-align:center}
-th{background:#003300} .hot{background:#00ff0044} h1{color:#0f0}
-</style>
+<head><title>eal7.x FLOP QUADRUPLE 8038</title>
+<style>body{font-family:monospace;background:#000;color:#0f0;padding:20px}pre{background:#111;padding:15px;border:1px solid #0f0}#bar{display:flex;gap:4px;height:100px;align-items:end} .b{background:#0f0;width:30px}</style>
 </head>
 <body>
-<h1>eal7.html - Tracking Matrix - oenLytics.x - FEMoeneye</h1>
-<p>Own Analytics - GA Support - Matrix: Pages x Events</p>
-<script src="http://localhost:8082/oenlytics.js"></script>
-<script>oenLytics.track('page_view', {page:'eal7.html', matrix:'tracking'})</script>
-
-<button onclick="oenLytics.track('fem_run',{solver:'fortran'})">Track FEM Run</button>
-<button onclick="oenLytics.track('ximg_view',{mime:'vnd.x-mosfetq-dos-image'})">Track XIMG</button>
-<button onclick="oenLytics.track('erp_export',{type:'gcode'})">Track ERP Export</button>
-
-<h2>Tracking Matrix</h2>
-<div id="matrix">Loading...</div>
-<h2>Raw Events</h2>
-<pre id="raw"></pre>
-
+<h1>eal7.x MAIN MACHINE CODE - 8038 FLOP QUADRUPLE PERSISTENT</h1>
+<div>BOA: application/vnd.x-mosfetq-dos-image IANA:1460172</div>
+<div id="info"></div>
+<div id="bar"></div>
+<pre id="m">loading...</pre>
+<script src="/oenlytics.js"></script>
 <script>
-async function load(){
-  let m = await fetch('http://localhost:8082/matrix').then(r=>r.json());
-  let s = await fetch('http://localhost:8082/stats').then(r=>r.json());
-  document.getElementById('raw').textContent = JSON.stringify(s,null,2);
-  
-  // Build HTML table matrix
-  let pages = Object.keys(m.matrix);
-  let allEvents = new Set();
-  pages.forEach(p=>{ Object.keys(m.matrix[p]).forEach(ev=>allEvents.add(ev)) });
-  let evs = Array.from(allEvents);
-  
-  let html = '<table><tr><th>Page \\ Event</th>';
-  evs.forEach(ev=>{ html+=`<th>${ev}</th>` });
-  html+='<th>TOTAL</th></tr>';
-  
-  pages.forEach(p=>{
-    html+=`<tr><td>${p}</td>`;
-    let tot=0;
-    evs.forEach(ev=>{
-      let c = (m.matrix[p][ev]||0);
-      tot+=c;
-      html+=`<td class="${c>0?'hot':''}">${c}</td>`;
-    });
-    html+=`<td><b>${tot}</b></td></tr>`;
-  });
-  html+='</table><p>Total events: '+m.total+'</p>';
-  document.getElementById('matrix').innerHTML=html;
+function load(){
+ fetch('/matrix').then(r=>r.json()).then(d=>{
+   document.getElementById('m').textContent=JSON.stringify(d,null,2);
+   document.getElementById('info').innerHTML=`DB: ${d.db} | Total: ${d.total} | Flops: ${d.total_flops_quadruple} | Port: ${d.port}`;
+   let bar=document.getElementById('bar'); bar.innerHTML='';
+   Object.entries(d.matrix||{}).forEach(([page,evs])=>{
+     Object.entries(evs).forEach(([ev,count])=>{
+       let div=document.createElement('div'); div.className='b';
+       div.style.height=(count*20+10)+'px'; div.title=`${page} ${ev} ${count}`;
+       bar.appendChild(div);
+     })
+   })
+ });
 }
-setInterval(load,2000); load();
+setInterval(load,1000); load();
+oenLytics.track('ximg_view');
 </script>
 </body>
 </html>
