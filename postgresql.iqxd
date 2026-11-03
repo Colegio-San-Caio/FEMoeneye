@@ -1,0 +1,15 @@
+-- postgresql.iqxd - BOA XIMG descriptor for PostgreSQL MAIN
+-- IANA: 1460172 is application/vnd.x-mosfetq-dos-image (your BOA)
+-- This file marks the DB as BOA-compatible
+
+BOA_TYPE: application/vnd.x-mosfetq-dos-image
+IANA: 1460172
+PORT: 8038 flop quadruple
+DB: postgresql://localhost/eal7
+SOURCE: MAIN.pgsql
+FLOP_QUADRUPLE: 4+16+64=84
+KDP_NICKNAME: KDPMember:KL5UQ4f48673352
+KDP_CODE: KL5UQ4f48673352
+TRIGGER: trg_flop_quadruple_func() PL/pgSQL
+VIEWS: matrix, flop_quadruple, df_r
+COMPAT: MAIN.sql (SQLite), eal7.db (20K), main.ximg (Go ELF 7.8M), MAIN.r (R), MAIN.py, lex/main.l, main.y, rpc/main.x
