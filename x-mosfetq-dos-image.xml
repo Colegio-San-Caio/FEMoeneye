@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/vnd.x-mosfetq-dos-image">
+    <comment>FEAoeneye XIMG DOS Image</comment>
+    <comment xml:lang="de">FEAoeneye XIMG DOS Abbild</comment>
+    <glob pattern="*.ximg"/>
+    <glob pattern="*.XIMG"/>
+    <magic priority="50">
+      <match type="string" value="XIMG" offset="0"/>
+    </magic>
+  </mime-type>
+</mime-info>
